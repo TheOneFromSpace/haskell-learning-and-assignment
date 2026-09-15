@@ -1,0 +1,32 @@
+# Compiled files
+*.o
+*.hi
+*.hie
+*.chi
+*.chs.h
+*.dyn_o
+*.dyn_hi
+
+# Directories
+dist
+dist-*
+cabal-sandbox/
+sandbox/
+stack-work/
+.hpc/
+.hsenv/
+HTF/
+
+# Cabal files
+cabal.project.local
+cabal.project.local~
+cabal.config
+
+# Profiling and event logs
+*.prof
+*.aux
+*.hp
+*.eventlog
+
+# GHC environment
+ghc.environment.*
