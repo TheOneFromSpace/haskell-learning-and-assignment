@@ -1,0 +1,6 @@
+compile using: ghc [filename] -o [output file name]
+this will result in a new exe that you can run with the code
+
+other ways of testing is online in the editor or using ghci
+
+ghcup can be used to make an tui (terminal user interface) -> had something to do with version control, prob out of scope for now.
