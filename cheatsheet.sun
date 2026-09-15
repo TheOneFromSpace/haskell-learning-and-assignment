@@ -4,3 +4,16 @@ this will result in a new exe that you can run with the code
 other ways of testing is online in the editor or using ghci
 
 ghcup can be used to make an tui (terminal user interface) -> had something to do with version control, prob out of scope for now.
+
+instead of saying haskell what to do or how to do it, you tell it what it is? (tutorial said so and that it was very important)
+
+the computer makes a thunk datastructure, this grabs all needed information for a single evaluation. 
+this is related to garbage collection aswell as lazy programming
+
+haskell has a take function on an array, with this you can grab the first selected amount items from an array
+
+puting 1 + 1 together this means if you have a list from 1 to 20, then you only grab the first 10, the array wont be loaded in,
+only the first 10 of the array will
+
+each of the methodes is seen as a application on itself,
+this might have something to do with the fact you need to manually import all methodes from the exe file or let them load in ghci
