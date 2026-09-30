@@ -33,3 +33,15 @@ printBoard board = do
     putStrLn (board !! 1 !! 0 : " | " ++ [board !! 1 !! 1] ++ " | " ++ [board !! 1 !! 2])
     putStrLn "--+---+--"
     putStrLn (board !! 2 !! 0 : " | " ++ [board !! 2 !! 1] ++ " | " ++ [board !! 2 !! 2])
+
+emptyPositions :: Board -> [(Int, Int)]
+emptyPositions board =
+    [ (x,y)
+    | y <- [0..2]
+    , x<- [0..2]
+    , board !! y !! x == ' '
+    ]
+
+boardIsEmpty :: Board -> Int -> Int -> Bool
+boardIsEmpty board x y =
+    board !! x !! y == ' '
