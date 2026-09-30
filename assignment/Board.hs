@@ -25,3 +25,11 @@ replaceAt x row p =
     -- maakt een lijst van de player character (X of O) omdat de ++ parameter alleen werkt met lijst functies
     ++ [p]
     ++ drop (x+1) row
+
+printBoard :: Board -> IO ()
+printBoard board = do
+    putStrLn (board !! 0 !! 0 : " | " ++ [board !! 0 !! 1] ++ " | " ++ [board !! 0 !! 2])
+    putStrLn "--+---+--"
+    putStrLn (board !! 1 !! 0 : " | " ++ [board !! 1 !! 1] ++ " | " ++ [board !! 1 !! 2])
+    putStrLn "--+---+--"
+    putStrLn (board !! 2 !! 0 : " | " ++ [board !! 2 !! 1] ++ " | " ++ [board !! 2 !! 2])
