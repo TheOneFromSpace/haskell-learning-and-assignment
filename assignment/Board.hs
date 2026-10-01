@@ -42,6 +42,33 @@ emptyPositions board =
     , board !! y !! x == ' '
     ]
 
-boardIsEmpty :: Board -> Int -> Int -> Bool
-boardIsEmpty board x y =
-    board !! x !! y == ' '
+squareIsEmpty :: Board -> Int -> Int -> Bool
+squareIsEmpty board x y =
+    board !! y !! x == ' '
+
+gameOver :: Board -> Bool
+gameOver board =
+    winCheck board || boardFull board
+
+winCheck :: Board -> Bool
+winCheck board =
+    samePlayer (board !! 0) ||
+    samePlayer (board !! 1) ||
+    samePlayer (board !! 2) ||
+
+    samePlayer [board !! 0 !! 0, board !! 1 !! 0, board !! 2 !! 0] ||
+    samePlayer [board !! 0 !! 1, board !! 1 !! 1, board !! 2 !! 1] ||
+    samePlayer [board !! 0 !! 2, board !! 1 !! 2, board !! 2 !! 2] ||
+
+    samePlayer [board !! 0 !! 0, board !! 1 !! 1, board !! 2 !! 2] ||
+    samePlayer [board !! 0 !! 2, board !! 1 !! 1, board !! 2 !! 0]
+
+samePlayer :: [Char] -> Bool
+samePlayer [a,b,c] =
+    a /= ' ' && a == b && b == c
+samePlayer _ = False
+
+
+boardFull :: Board -> Bool
+boardFull board =
+    null (emptyPositions board)

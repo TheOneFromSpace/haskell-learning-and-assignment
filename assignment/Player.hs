@@ -7,7 +7,7 @@ getMove board = do
     putStrLn "voer x en y in: "
     input <- getLine
     let [x,y] = map read (words input)
-    if boardIsEmpty board x y
+    if squareIsEmpty board x y
     then return (x,y)
     else do 
         putStrLn "ongeldige zet"

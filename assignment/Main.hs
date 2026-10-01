@@ -2,13 +2,15 @@ import Board
 import Player
 
 main :: IO ()
-main = do
-    printBoard emptyBoard
-    (x,y) <- getMove emptyBoard
-    let board1 = makeMove emptyBoard x y 'X'
-    printBoard board1
-    (x,y) <- getMove board1
-    let board2 = makeMove board1 x y 'X'
-    printBoard board2
+main = loopGame emptyBoard
 
-    
+loopGame :: Board -> IO()
+loopGame board = do
+    printBoard board
+
+    if gameOver board
+    then putStrLn "Game over!"
+    else do
+        (x,y) <- getMove board
+        let newBoard = makeMove board x y 'X'
+        loopGame newBoard
