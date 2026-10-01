@@ -1,8 +1,14 @@
 module Player where
 
-getMove :: IO (Int,Int)
-getMove = do
+import Board
+
+getMove :: Board -> IO (Int,Int)
+getMove board = do
     putStrLn "voer x en y in: "
     input <- getLine
     let [x,y] = map read (words input)
-    return (x,y)
+    if boardIsEmpty board x y
+    then return (x,y)
+    else do 
+        putStrLn "ongeldige zet"
+        getMove board
