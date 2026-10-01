@@ -48,25 +48,41 @@ squareIsEmpty board x y =
 
 gameOver :: Board -> Bool
 gameOver board =
-    winCheck board || boardFull board
+    winCheck board /= Nothing || boardFull board
 
-winCheck :: Board -> Bool
+winCheck :: Board -> Maybe Char
 winCheck board =
-    samePlayer (board !! 0) ||
-    samePlayer (board !! 1) ||
-    samePlayer (board !! 2) ||
+    if samePlayer (board !! 0) /= Nothing
+    then samePlayer (board !! 0)
 
-    samePlayer [board !! 0 !! 0, board !! 1 !! 0, board !! 2 !! 0] ||
-    samePlayer [board !! 0 !! 1, board !! 1 !! 1, board !! 2 !! 1] ||
-    samePlayer [board !! 0 !! 2, board !! 1 !! 2, board !! 2 !! 2] ||
+    else if samePlayer (board !! 1) /= Nothing
+    then samePlayer (board !! 1)
 
-    samePlayer [board !! 0 !! 0, board !! 1 !! 1, board !! 2 !! 2] ||
-    samePlayer [board !! 0 !! 2, board !! 1 !! 1, board !! 2 !! 0]
+    else if samePlayer (board !! 2) /= Nothing
+    then samePlayer (board !! 2)
 
-samePlayer :: [Char] -> Bool
-samePlayer [a,b,c] =
-    a /= ' ' && a == b && b == c
-samePlayer _ = False
+    else if samePlayer [board !! 0 !! 0, board !! 1 !! 0, board !! 2 !! 0] /= Nothing
+    then samePlayer [board !! 0 !! 0, board !! 1 !! 0, board !! 2 !! 0]
+
+    else if samePlayer [board !! 0 !! 1, board !! 1 !! 1, board !! 2 !! 1] /= Nothing
+    then samePlayer [board !! 0 !! 1, board !! 1 !! 1, board !! 2 !! 1]
+
+    else if samePlayer [board !! 0 !! 2, board !! 1 !! 2, board !! 2 !! 2] /= Nothing
+    then samePlayer [board !! 0 !! 2, board !! 1 !! 2, board !! 2 !! 2]
+
+    else if samePlayer [board !! 0 !! 0, board !! 1 !! 1, board !! 2 !! 2] /= Nothing
+    then samePlayer [board !! 0 !! 0, board !! 1 !! 1, board !! 2 !! 2]
+
+    else if samePlayer [board !! 0 !! 2, board !! 1 !! 1, board !! 2 !! 0] /= Nothing
+    then samePlayer [board !! 0 !! 2, board !! 1 !! 1, board !! 2 !! 0]
+
+    else Nothing
+
+samePlayer :: [Char] -> Maybe Char
+samePlayer [a,b,c] 
+   | a /= ' ' && a == b && b == c = Just a
+   | otherwise = Nothing
+samePlayer _ = Nothing
 
 
 boardFull :: Board -> Bool

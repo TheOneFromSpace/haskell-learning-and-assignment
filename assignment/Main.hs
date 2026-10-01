@@ -1,5 +1,6 @@
 import Board
 import Player
+import Ai
 
 main :: IO ()
 main = loopGame emptyBoard
