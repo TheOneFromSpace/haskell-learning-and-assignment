@@ -13,5 +13,10 @@ loopGame board = do
     then putStrLn "Game over!"
     else do
         (x,y) <- getMove board
-        let newBoard = makeMove board x y 'X'
-        loopGame newBoard
+        let playerMoveDoneBoard = makeMove board x y 'X'
+        if gameOver playerMoveDoneBoard
+        then putStrLn "Game over!"
+        else do
+            let (aiX,aiY) = bestMove playerMoveDoneBoard
+            let newBoard = makeMove playerMoveDoneBoard aiX aiY 'O'
+            loopGame newBoard
